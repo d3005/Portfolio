@@ -4,6 +4,7 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    scroll-behavior: smooth;
 }
 
 header {
@@ -15,6 +16,11 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
+    transition: background-color 0.5s;
+}
+
+header:hover {
+    background-color: #444;
 }
 
 header nav ul {
@@ -46,11 +52,21 @@ section {
     margin: 2rem 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s forwards;
 }
 
 section:hover {
     transform: translateY(-10px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .skill {
@@ -68,6 +84,10 @@ section:hover {
     transition: width 0.3s;
 }
 
+.skill-bar:hover {
+    background-color: #45a049;
+}
+
 .project, .experience, .education {
     margin-bottom: 1.5rem;
 }
@@ -78,6 +98,16 @@ section:hover {
 
 .project p, .experience p, .education p {
     margin: 0;
+}
+
+.project a {
+    color: #4caf50;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.project a:hover {
+    color: #388e3c;
 }
 
 #contact-form {
@@ -119,4 +149,9 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+    transition: background-color 0.5s;
+}
+
+footer:hover {
+    background-color: #444;
 }
