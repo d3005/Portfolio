@@ -3,105 +3,481 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daniel Joseph's Portfolio</title>
+    <title>Daniel Joseph | Data Science Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
     <header>
+        <div class="logo">
+            <span>DJ</span>
+        </div>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
     </header>
     
-    <section id="home">
-        <h1>Welcome to My Portfolio</h1>
-        <p>Hello! I'm Daniel Joseph, a passionate Computer Science Student with a specialization in Data Science.</p>
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="glitch" data-text="Daniel Joseph">Daniel Joseph</h1>
+                <div class="typewriter">
+                    <span id="typewriter-text"></span><span class="cursor">|</span>
+                </div>
+                <p class="subtitle">Computer Science Student specializing in Data Science</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn primary-btn">Get In Touch</a>
+                    <a href="#projects" class="btn secondary-btn">View My Work</a>
+                </div>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <a href="#about">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
     </section>
 
     <section id="about">
-        <h2>About Me</h2>
-        <p>Aspiring Software Engineer with a strong foundation in Computer Science and a specialization in Data Science. Currently in the third year of B. Tech, seeking opportunities to apply analytical skills and technical expertise to real-world projects. Committed to continuous learning and development, with a keen interest in leveraging data-driven solutions to drive innovation. Aiming for a dynamic role that offers growth and challenges.</p>
+        <div class="container">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="image-container">
+                        <img src="https://via.placeholder.com/400x500" alt="Daniel Joseph">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>Who am I?</h3>
+                    <p>Aspiring Software Engineer with a strong foundation in Computer Science and a specialization in Data Science. Currently in the third year of B. Tech, seeking opportunities to apply analytical skills and technical expertise to real-world projects.</p>
+                    
+                    <p>Committed to continuous learning and development, with a keen interest in leveraging data-driven solutions to drive innovation. Aiming for a dynamic role that offers growth and challenges.</p>
+                    
+                    <div class="personal-info">
+                        <div class="info-item">
+                            <span class="info-title">Name:</span>
+                            <span class="info-value">Daniel Joseph</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-title">Email:</span>
+                            <span class="info-value">daniel.joseph@example.com</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-title">Location:</span>
+                            <span class="info-value">India</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-title">Availability:</span>
+                            <span class="info-value">Open to Opportunities</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn primary-btn">Download CV</a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="skills">
-        <h2>Skills</h2>
-        <div class="skill">
-            <p>Python</p>
-            <div class="skill-bar" style="width: 90%;"></div>
-        </div>
-        <div class="skill">
-            <p>Data Science</p>
-            <div class="skill-bar" style="width: 85%;"></div>
-        </div>
-        <div class="skill">
-            <p>Machine Learning</p>
-            <div class="skill-bar" style="width: 80%;"></div>
-        </div>
-        <div class="skill">
-            <p>Content Writing</p>
-            <div class="skill-bar" style="width: 70%;"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2>My Skills</h2>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="skills-container">
+                <div class="skills-category">
+                    <h3>Technical Skills</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-percentage="90">
+                            <div class="skill-info">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-percentage="85">
+                            <div class="skill-info">
+                                <span class="skill-name">Data Science</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-percentage="80">
+                            <div class="skill-info">
+                                <span class="skill-name">Machine Learning</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-percentage="75">
+                            <div class="skill-info">
+                                <span class="skill-name">SQL</span>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-category">
+                    <h3>Soft Skills</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-percentage="90">
+                            <div class="skill-info">
+                                <span class="skill-name">Problem Solving</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-percentage="85">
+                            <div class="skill-info">
+                                <span class="skill-name">Analytical Thinking</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-percentage="80">
+                            <div class="skill-info">
+                                <span class="skill-name">Teamwork</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-percentage="70">
+                            <div class="skill-info">
+                                <span class="skill-name">Content Writing</span>
+                                <span class="skill-percentage">70%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="projects">
-        <h2>Projects</h2>
-        <div class="project">
-            <h3>Project Title: House Price Prediction System</h3>
-            <p>This project demonstrated the use of several machine learning techniques to predict house prices. The models used were Gradient Boosting, Linear Regression, and Random Forest. Among these, Random Forest showed promising results based on RMSE and R^2 scores.</p>
-            <a href="https://github.com/d3005/House_Price_Prediction" target="https://github.com/d3005/House_Price_Prediction">View Project</a>
+        <div class="container">
+            <div class="section-header">
+                <h2>My Projects</h2>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="data-science">Data Science</button>
+                <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
+                <button class="filter-btn" data-filter="web-dev">Web Development</button>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card" data-category="machine-learning">
+                    <div class="project-img">
+                        <img src="https://via.placeholder.com/600x400" alt="House Price Prediction">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/d3005/House_Price_Prediction" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>House Price Prediction System</h3>
+                        <p>This project demonstrated the use of several machine learning techniques to predict house prices. The models used were Gradient Boosting, Linear Regression, and Random Forest.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">Data Analysis</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="data-science">
+                    <div class="project-img">
+                        <img src="https://via.placeholder.com/600x400" alt="Data Visualization Dashboard">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Data Visualization Dashboard</h3>
+                        <p>Interactive dashboard for visualizing complex datasets, built with Python and Dash. Features include customizable charts and real-time data filtering.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Dash</span>
+                            <span class="tag">Data Visualization</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="web-dev">
+                    <div class="project-img">
+                        <img src="https://via.placeholder.com/600x400" alt="Personal Portfolio">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Personal Portfolio Website</h3>
+                        <p>Responsive portfolio website built with HTML, CSS, and JavaScript. Features smooth animations and modern design principles.</p>
+                        <div class="project-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="experience">
-        <h2>Experience</h2>
-        <div class="experience">
-            <h3>Rise Krishna Sai Prakasam Group of Institutions</h3>
-            <p>Student • Full-time • 11/2022 - Present</p>
-        </div>
-        <div class="experience">
-            <h3>Prodigy InfoTech</h3>
-            <p>Intern • Internship • 06/2024 - 06/2024</p>
-        </div>
-        <div class="experience">
-            <h3>Next24Tech technology & Services</h3>
-            <p>Data Science Intern • Internship • 07/2024 - 08/2024</p>
+        <div class="container">
+            <div class="section-header">
+                <h2>Experience</h2>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2024 - Present</div>
+                    <div class="timeline-content">
+                        <h3>Rise Krishna Sai Prakasam Group of Institutions</h3>
+                        <p class="timeline-position">Student • Full-time</p>
+                        <p class="timeline-description">Pursuing B.Tech in Computer Science with specialization in Data Science. Actively participating in technical clubs and workshops.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Jul 2024 - Aug 2024</div>
+                    <div class="timeline-content">
+                        <h3>Next24Tech Technology & Services</h3>
+                        <p class="timeline-position">Data Science Intern</p>
+                        <p class="timeline-description">Worked on data analysis projects, developed machine learning models, and contributed to data visualization dashboards.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Jun 2024</div>
+                    <div class="timeline-content">
+                        <h3>Prodigy InfoTech</h3>
+                        <p class="timeline-position">Intern</p>
+                        <p class="timeline-description">Participated in a month-long internship program focusing on software development fundamentals and industry best practices.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="education">
-        <h2>Education</h2>
-        <div class="education">
-            <h3>Narayana Junior College</h3>
-            <p>Intermediate in MPC • GPA: 7.2 • 08/2020 - 06/2022</p>
-        </div>
-        <div class="education">
-            <h3>Narayana E-Techno School</h3>
-            <p>SSC • GPA: 10.0 • 06/2017 - 06/2020</p>
+        <div class="container">
+            <div class="section-header">
+                <h2>Education</h2>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="education-cards">
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-details">
+                        <h3>B.Tech in Computer Science</h3>
+                        <p class="institution">Rise Krishna Sai Prakasam Group of Institutions</p>
+                        <p class="duration">2022 - Present</p>
+                        <p class="description">Specializing in Data Science with focus on machine learning, data analysis, and software development.</p>
+                    </div>
+                </div>
+                
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <div class="education-details">
+                        <h3>Intermediate in MPC</h3>
+                        <p class="institution">Narayana Junior College</p>
+                        <p class="duration">2020 - 2022</p>
+                        <p class="description">GPA: 7.2</p>
+                    </div>
+                </div>
+                
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="education-details">
+                        <h3>SSC</h3>
+                        <p class="institution">Narayana E-Techno School</p>
+                        <p class="duration">2017 - 2020</p>
+                        <p class="description">GPA: 10.0</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="contact">
-        <h2>Contact</h2>
-        <form id="contact-form">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>Feel free to reach out to me for any opportunities or collaborations.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Location</h4>
+                                <p>Andhra Pradesh, India</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>daniel.joseph@example.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <p>+91 98765 43210</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <label for="name">Your Name</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            <label for="email">Your Email</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                            <label for="subject">Subject</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                            <label for="message">Your Message</label>
+                        </div>
+                        
+                        <button type="submit" class="btn primary-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 Daniel Joseph. All rights reserved.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>DJ</span>
+                </div>
+                <p>© 2024 Daniel Joseph. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <script src="script.js"></script>
 </body>
 </html>
+
