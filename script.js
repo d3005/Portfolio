@@ -1,17 +1,149 @@
 // Wait for DOM to load
 document.addEventListener("DOMContentLoaded", () => {
+    // Page Transition
+    const pageTransition = document.querySelector(".page-transition")
+  
+    setTimeout(() => {
+      pageTransition.style.transform = "translateY(-100%)"
+    }, 2000)
+  
+    // Initialize AOS
+    if (typeof AOS !== "undefined") {
+      AOS.init({
+        duration: 1000,
+        once: true,
+        mirror: false,
+        offset: 100,
+      })
+    }
+  
+    // Initialize Particles.js
+    if (typeof particlesJS !== "undefined") {
+      particlesJS("particles-js", {
+        particles: {
+          number: {
+            value: 80,
+            density: {
+              enable: true,
+              value_area: 800,
+            },
+          },
+          color: {
+            value: "#4361ee",
+          },
+          shape: {
+            type: "circle",
+            stroke: {
+              width: 0,
+              color: "#000000",
+            },
+            polygon: {
+              nb_sides: 5,
+            },
+          },
+          opacity: {
+            value: 0.5,
+            random: false,
+            anim: {
+              enable: false,
+              speed: 1,
+              opacity_min: 0.1,
+              sync: false,
+            },
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: {
+              enable: false,
+              speed: 40,
+              size_min: 0.1,
+              sync: false,
+            },
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#4361ee",
+            opacity: 0.4,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: false,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: {
+              enable: false,
+              rotateX: 600,
+              rotateY: 1200,
+            },
+          },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "grab",
+            },
+            onclick: {
+              enable: true,
+              mode: "push",
+            },
+            resize: true,
+          },
+          modes: {
+            grab: {
+              distance: 140,
+              line_linked: {
+                opacity: 1,
+              },
+            },
+            bubble: {
+              distance: 400,
+              size: 40,
+              duration: 2,
+              opacity: 8,
+              speed: 3,
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4,
+            },
+            push: {
+              particles_nb: 4,
+            },
+            remove: {
+              particles_nb: 2,
+            },
+          },
+        },
+        retina_detect: true,
+      })
+    }
+  
     // Custom cursor
     const cursor = document.querySelector(".cursor")
     const cursorFollower = document.querySelector(".cursor-follower")
   
     document.addEventListener("mousemove", (e) => {
-      cursor.style.left = e.clientX + "px"
-      cursor.style.top = e.clientY + "px"
+      if (typeof gsap !== "undefined") {
+        gsap.to(cursor, {
+          x: e.clientX,
+          y: e.clientY,
+          duration: 0.1,
+        })
   
-      setTimeout(() => {
-        cursorFollower.style.left = e.clientX + "px"
-        cursorFollower.style.top = e.clientY + "px"
-      }, 100)
+        gsap.to(cursorFollower, {
+          x: e.clientX,
+          y: e.clientY,
+          duration: 0.3,
+        })
+      }
     })
   
     document.addEventListener("mousedown", () => {
@@ -31,6 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
       link.addEventListener("mouseenter", () => {
         cursor.style.transform = "translate(-50%, -50%) scale(1.5)"
         cursor.style.opacity = "0.5"
+        cursor.style.borderColor = "white"
         cursorFollower.style.width = "40px"
         cursorFollower.style.height = "40px"
       })
@@ -38,6 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
       link.addEventListener("mouseleave", () => {
         cursor.style.transform = "translate(-50%, -50%) scale(1)"
         cursor.style.opacity = "0.7"
+        cursor.style.borderColor = "var(--primary-color)"
         cursorFollower.style.width = "30px"
         cursorFollower.style.height = "30px"
       })
@@ -81,6 +215,23 @@ document.addEventListener("DOMContentLoaded", () => {
       link.addEventListener("click", () => {
         nav.classList.remove("active")
         menuToggle.classList.remove("active")
+      })
+    })
+  
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault()
+  
+        const targetId = this.getAttribute("href")
+        const targetElement = document.querySelector(targetId)
+  
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: "smooth",
+          })
+        }
       })
     })
   
@@ -150,25 +301,50 @@ document.addEventListener("DOMContentLoaded", () => {
   
         const filter = this.getAttribute("data-filter")
   
-        projectCards.forEach((card) => {
-          if (filter === "all") {
-            card.style.display = "block"
-          } else if (card.getAttribute("data-category") === filter) {
-            card.style.display = "block"
-          } else {
-            card.style.display = "none"
-          }
-        })
+        // GSAP animation for filtering
+        if (typeof gsap !== "undefined") {
+          gsap.to(projectCards, {
+            duration: 0.4,
+            opacity: 0,
+            y: 20,
+            stagger: 0.1,
+            onComplete: () => {
+              projectCards.forEach((card) => {
+                if (filter === "all") {
+                  card.style.display = "block"
+                } else if (card.getAttribute("data-category") === filter) {
+                  card.style.display = "block"
+                } else {
+                  card.style.display = "none"
+                }
+              })
+  
+              gsap.to(projectCards, {
+                duration: 0.4,
+                opacity: 1,
+                y: 0,
+                stagger: 0.1,
+                delay: 0.1,
+              })
+            },
+          })
+        }
       })
     })
   
     // Animate skill bars on scroll
-    const skillBars = document.querySelectorAll(".progress-bar")
-  
     function animateSkillBars() {
+      const skillBars = document.querySelectorAll(".progress-bar")
+  
       skillBars.forEach((bar) => {
         const percentage = bar.parentElement.parentElement.getAttribute("data-percentage")
-        bar.style.width = percentage + "%"
+        if (typeof gsap !== "undefined") {
+          gsap.to(bar, {
+            width: percentage + "%",
+            duration: 1.5,
+            ease: "power2.out",
+          })
+        }
       })
     }
   
@@ -196,6 +372,39 @@ document.addEventListener("DOMContentLoaded", () => {
       observer.observe(section)
     })
   
+    // GSAP ScrollTrigger for animations
+    if (typeof ScrollTrigger !== "undefined" && typeof gsap !== "undefined") {
+      // Hero section animations
+      gsap.from(".hero h1", {
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        delay: 2.2,
+      })
+  
+      // Animate skill bars when skills section is in view
+      ScrollTrigger.create({
+        trigger: "#skills",
+        start: "top 70%",
+        onEnter: animateSkillBars,
+      })
+  
+      // Reveal text animation
+      const revealText = document.querySelectorAll(".reveal-text")
+  
+      revealText.forEach((text) => {
+        text.setAttribute("data-text", text.textContent)
+  
+        ScrollTrigger.create({
+          trigger: text,
+          start: "top 80%",
+          onEnter: () => {
+            text.classList.add("animate")
+          },
+        })
+      })
+    }
+  
     // Form submission
     const contactForm = document.getElementById("contact-form")
   
@@ -210,10 +419,52 @@ document.addEventListener("DOMContentLoaded", () => {
   
       // Here you would typically send the form data to a server
       // For now, we'll just show an alert
-      alert(`Thank you, ${name}! Your message has been sent successfully.`)
   
-      // Reset form
-      contactForm.reset()
+      // Animation for form submission
+      const btn = contactForm.querySelector("button")
+      const originalText = btn.innerHTML
+  
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...'
+      btn.disabled = true
+  
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-check"></i> Sent!'
+  
+        setTimeout(() => {
+          btn.innerHTML = originalText
+          btn.disabled = false
+  
+          alert(`Thank you, ${name}! Your message has been sent successfully.`)
+  
+          // Reset form
+          contactForm.reset()
+        }, 2000)
+      }, 2000)
+    })
+  
+    // Add dark mode toggle
+    const body = document.body
+    const darkModeToggle = document.createElement("div")
+    darkModeToggle.className = "dark-mode-toggle"
+    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'
+    document.body.appendChild(darkModeToggle)
+  
+    // Check for saved dark mode preference
+    if (localStorage.getItem("darkMode") === "enabled") {
+      body.classList.add("dark")
+      darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'
+    }
+  
+    darkModeToggle.addEventListener("click", () => {
+      body.classList.toggle("dark")
+  
+      if (body.classList.contains("dark")) {
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'
+        localStorage.setItem("darkMode", "enabled")
+      } else {
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'
+        localStorage.setItem("darkMode", null)
+      }
     })
   })
   
