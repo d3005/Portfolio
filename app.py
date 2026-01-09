@@ -35,6 +35,22 @@ BASE_DIR = Path(__file__).resolve().parent
 def serve_root():
     return send_from_directory(str(BASE_DIR), "index.html")
 
+@server.route("/about")
+def serve_about():
+    return send_from_directory(str(BASE_DIR), "about.html")
+
+@server.route("/skills-education")
+def serve_skills_education():
+    return send_from_directory(str(BASE_DIR), "skills-education.html")
+
+@server.route("/experience")
+def serve_experience():
+    return send_from_directory(str(BASE_DIR), "experience.html")
+
+@server.route("/contact")
+def serve_contact():
+    return send_from_directory(str(BASE_DIR), "contact.html")
+
 @server.route("/styles.css")
 def serve_styles():
     return send_from_directory(str(BASE_DIR), "styles.css")
