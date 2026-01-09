@@ -4,17 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniel Joseph | Data Science Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Inline minimal styles for dashboard embed */
+        #dashboard { background-color: #f9f9f9; }
+        .dashboard-embed { position: relative; width: 100%; max-width: 1200px; margin: 0 auto; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; background: #fff; }
+        .dashboard-embed::before { content: ""; display: block; padding-top: 56.25%; }
+        .dashboard-frame { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    </style>
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="assets/sounds/hover.mp3" as="audio">
+    <link rel="preload" href="assets/sounds/click.mp3" as="audio">
+    <link rel="preload" href="assets/sounds/success.mp3" as="audio">
+    <link rel="preload" href="assets/sounds/transition.mp3" as="audio">
+    
+    <!-- Preload critical JS -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" as="script">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Daniel Joseph - Data Science Portfolio. Showcasing projects in machine learning, data analysis, and web development.">
+    <meta name="keywords" content="data science, portfolio, machine learning, python, web development">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Daniel Joseph | Data Science Portfolio">
+    <meta property="og:description" content="Showcasing projects in machine learning, data analysis, and web development.">
+    <meta property="og:type" content="website">
 </head>
 <body>
+    <!-- Audio Elements (Preloaded) -->
+    <audio id="hoverSound" preload="auto">
+        <source src="assets/sounds/hover.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="clickSound" preload="auto">
+        <source src="assets/sounds/click.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="successSound" preload="auto">
+        <source src="assets/sounds/success.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="transitionSound" preload="auto">
+        <source src="assets/sounds/transition.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Sound Controls -->
+    <div class="sound-control">
+        <button id="toggleSound" aria-label="Toggle Sound">
+            <i class="fas fa-volume-up"></i>
+        </button>
+        <div class="volume-slider-container">
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
+        </div>
+    </div>
+    
+    <!-- Jarvis Interface -->
+    <div class="jarvis-interface">
+        <div class="jarvis-circle">
+            <div class="jarvis-inner-circle"></div>
+            <div class="jarvis-wave"></div>
+        </div>
+        <div class="jarvis-status">System Online</div>
+        <button id="jarvisCommand" aria-label="Jarvis Command">
+            <i class="fas fa-microphone"></i>
+        </button>
+    </div>
+    
+    <!-- Network Status Indicator -->
+    <div id="networkStatus" class="network-status">
+        <div class="status-icon">
+            <i class="fas fa-wifi"></i>
+        </div>
+        <div class="status-text">Online</div>
+    </div>
+    
     <!-- Page Transition Overlay -->
     <div class="page-transition">
         <div class="loader">
             <span class="loader-text">DJ</span>
             <div class="loading-bar"></div>
+            <div class="loading-status">Initializing Interface...</div>
         </div>
     </div>
 
@@ -31,16 +108,17 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#home" class="nav-link" data-sound="hover">Home</a></li>
+                <li><a href="#about" class="nav-link" data-sound="hover">About</a></li>
+                <li><a href="#skills" class="nav-link" data-sound="hover">Skills</a></li>
+                <li><a href="#projects" class="nav-link" data-sound="hover">Projects</a></li>
+                <li><a href="#dashboard" class="nav-link" data-sound="hover">Dashboard</a></li>
+                <li><a href="#experience" class="nav-link" data-sound="hover">Experience</a></li>
+                <li><a href="#education" class="nav-link" data-sound="hover">Education</a></li>
+                <li><a href="#contact" class="nav-link" data-sound="hover">Contact</a></li>
             </ul>
         </nav>
-        <div class="menu-toggle">
+        <div class="menu-toggle" data-sound="click">
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -52,29 +130,67 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
+                <div class="hero-greeting">Welcome, Guest</div>
                 <h1 class="glitch" data-text="Daniel Joseph">Daniel Joseph</h1>
                 <div class="typewriter">
                     <span id="typewriter-text"></span><span class="cursor">|</span>
                 </div>
                 <p class="subtitle">Computer Science Student specializing in Data Science</p>
                 <div class="cta-buttons">
-                    <a href="#contact" class="btn primary-btn">Get In Touch</a>
-                    <a href="#projects" class="btn secondary-btn">View My Work</a>
+                    <a href="#contact" class="btn primary-btn" data-sound="click">Get In Touch</a>
+                    <a href="#projects" class="btn secondary-btn" data-sound="click">View My Work</a>
                 </div>
                 <div class="social-icons">
-                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="social-icon" data-sound="hover"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-icon" data-sound="hover"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-icon" data-sound="hover"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon" data-sound="hover"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
         </div>
         <div class="scroll-down">
-            <a href="#about">
+            <a href="#about" data-sound="hover">
                 <span></span>
                 <span></span>
                 <span></span>
             </a>
+        </div>
+        
+        <!-- HUD Elements -->
+        <div class="hud-element hud-top-left">
+            <div class="hud-line"></div>
+            <div class="hud-text">System: Active</div>
+        </div>
+        <div class="hud-element hud-top-right">
+            <div class="hud-line"></div>
+            <div class="hud-text">Memory: Optimal</div>
+        </div>
+        <div class="hud-element hud-bottom-left">
+            <div class="hud-line"></div>
+            <div class="hud-text">Status: Online</div>
+        </div>
+        <div class="hud-element hud-bottom-right">
+            <div class="hud-line"></div>
+            <div class="hud-text">Connection: Secure</div>
+        </div>
+    </section>
+
+    <section id="dashboard">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Interactive Dashboard</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="dashboard-embed" data-aos="fade-up" data-aos-delay="150">
+                <iframe
+                    class="dashboard-frame"
+                    src="http://127.0.0.1:8050/"
+                    title="Dash App"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                ></iframe>
+            </div>
         </div>
     </section>
 
@@ -87,7 +203,7 @@
             <div class="about-content">
                 <div class="about-image" data-aos="fade-right" data-aos-delay="200">
                     <div class="image-container">
-                        <img src="https://via.placeholder.com/400x500" alt="Daniel Joseph">
+                        <img src="https://via.placeholder.com/400x500" alt="Daniel Joseph" loading="lazy">
                         <div class="image-overlay"></div>
                         <div class="floating-shapes">
                             <div class="shape shape-1"></div>
@@ -95,6 +211,7 @@
                             <div class="shape shape-3"></div>
                             <div class="shape shape-4"></div>
                         </div>
+                        <div class="scan-line"></div>
                     </div>
                 </div>
                 <div class="about-text" data-aos="fade-left" data-aos-delay="300">
@@ -122,7 +239,10 @@
                         </div>
                     </div>
                     
-                    <a href="#" class="btn primary-btn btn-animated">Download CV</a>
+                    <a href="#" class="btn primary-btn btn-animated" data-sound="click">
+                        <span>Download CV</span>
+                        <i class="fas fa-download"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -237,20 +357,20 @@
             </div>
             
             <div class="projects-filter" data-aos="fade-up" data-aos-delay="200">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="data-science">Data Science</button>
-                <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
-                <button class="filter-btn" data-filter="web-dev">Web Development</button>
+                <button class="filter-btn active" data-filter="all" data-sound="click">All</button>
+                <button class="filter-btn" data-filter="data-science" data-sound="click">Data Science</button>
+                <button class="filter-btn" data-filter="machine-learning" data-sound="click">Machine Learning</button>
+                <button class="filter-btn" data-filter="web-dev" data-sound="click">Web Development</button>
             </div>
             
             <div class="projects-grid">
                 <div class="project-card" data-category="machine-learning" data-aos="zoom-in" data-aos-delay="100">
                     <div class="project-img">
-                        <img src="https://via.placeholder.com/600x400" alt="House Price Prediction">
+                        <img src="https://via.placeholder.com/600x400" alt="House Price Prediction" loading="lazy">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="https://github.com/d3005/House_Price_Prediction" target="_blank"><i class="fab fa-github"></i></a>
-                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="https://github.com/d3005/House_Price_Prediction" target="_blank" data-sound="click"><i class="fab fa-github"></i></a>
+                                <a href="#" target="_blank" data-sound="click"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>
@@ -267,11 +387,11 @@
                 
                 <div class="project-card" data-category="data-science" data-aos="zoom-in" data-aos-delay="200">
                     <div class="project-img">
-                        <img src="https://via.placeholder.com/600x400" alt="Data Visualization Dashboard">
+                        <img src="https://via.placeholder.com/600x400" alt="Data Visualization Dashboard" loading="lazy">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" target="_blank" data-sound="click"><i class="fab fa-github"></i></a>
+                                <a href="#" target="_blank" data-sound="click"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>
@@ -288,11 +408,11 @@
                 
                 <div class="project-card" data-category="web-dev" data-aos="zoom-in" data-aos-delay="300">
                     <div class="project-img">
-                        <img src="https://via.placeholder.com/600x400" alt="Personal Portfolio">
+                        <img src="https://via.placeholder.com/600x400" alt="Personal Portfolio" loading="lazy">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" target="_blank" data-sound="click"><i class="fab fa-github"></i></a>
+                                <a href="#" target="_blank" data-sound="click"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>
@@ -443,10 +563,10 @@
                     </div>
                     
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" data-sound="hover"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" data-sound="hover"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link" data-sound="hover"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" data-sound="hover"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
@@ -476,7 +596,7 @@
                             <span class="focus-border"></span>
                         </div>
                         
-                        <button type="submit" class="btn primary-btn btn-animated">
+                        <button type="submit" class="btn primary-btn btn-animated" data-sound="click">
                             <span>Send Message</span>
                             <i class="fas fa-paper-plane"></i>
                         </button>
@@ -494,25 +614,30 @@
                 </div>
                 <p>© 2024 Daniel Joseph. All rights reserved.</p>
                 <div class="footer-social">
-                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="social-icon" data-sound="hover"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-icon" data-sound="hover"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-icon" data-sound="hover"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon" data-sound="hover"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <div class="back-to-top">
+    <div class="back-to-top" data-sound="click">
         <i class="fas fa-arrow-up"></i>
     </div>
 
     <!-- Scripts -->
+    <!-- Load critical scripts first -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="script.js"></script>
+    
+    <!-- Defer non-critical scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+    <link href="https://unpkg.com/aos@2.3  defer></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <script src="script.js" defer></script>
 </body>
 </html>
 
