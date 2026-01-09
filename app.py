@@ -1,3 +1,4 @@
+import os
 import dash
 from dash import html, dcc
 import plotly.express as px
@@ -16,10 +17,15 @@ fig = px.scatter(
     height=500,
 )
 
+BASE_PATH = os.getenv("DASH_BASE_PATHNAME", "/dashboard/")
+if not BASE_PATH.endswith("/"):
+    BASE_PATH = BASE_PATH + "/"
+
 app = dash.Dash(
     __name__,
     title="Daniel Joseph - Dashboard",
-    requests_pathname_prefix="/dashboard/",
+    requests_pathname_prefix=BASE_PATH,
+    routes_pathname_prefix=BASE_PATH,
 )
 server = app.server
 
